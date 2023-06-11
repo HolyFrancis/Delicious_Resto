@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from app.models import Menu
 from app.forms import MenuForm
 from django.http import HttpRequest
+from django.contrib import messages
 
 def add(request):
     form=MenuForm
@@ -38,3 +39,15 @@ def edit(request,id):
                 'form':form
             }
         )
+    
+def update(request, id):
+    if request.method == 'POST':
+        if id == 0:
+            form = MenuForm(request.POST)
+        else:
+            menu = Menu.objects.get(pk=id)
+            form = MenuForm(request.POST, instance=menu)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Menu has been updated successfully !")
+        return redirect('/menu')

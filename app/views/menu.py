@@ -51,3 +51,9 @@ def update(request, id):
             form.save()
             messages.success(request, "Menu has been updated successfully !")
         return redirect('/menu')
+
+def delete(request, id):
+    menu=Menu.objects.get(pk=id)
+    menu.delete()
+    messages.success(request, "Menu has been removed successfully!")
+    return redirect('/menu')

@@ -23,3 +23,18 @@ def store(request):
             form.image=request.FILES['image']
         form.save()
         return redirect('/menu')
+
+def edit(request,id):
+    assert isinstance(request, HttpRequest)
+    if request.method=="GET":
+        if id== 0:
+            form=MenuForm
+        else:
+            menu=Menu.objects.get(pk=id)
+            form=MenuForm(instance=menu)
+        return render(
+            request,
+            'app/home/editmenu.html',{
+                'form':form
+            }
+        )

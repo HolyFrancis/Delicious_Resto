@@ -1,0 +1,63 @@
+{% extends 'app/Layouts/default.html' %}
+{% load static %}
+
+ {% include 'app/partials/sidbar.html' %}
+ {% include 'app/partials/nav.html' %}
+ {% include 'app/partials/head.html' %}
+
+ {% block content %}
+<div class="content-wrapper">
+   <div class="container shadow-sm p-2 d-flex justify-content-between" style="background: #f7f7f7">
+      <div>
+         <h1 class="fw-bold py-1" style="font-size: 14px">Menu / <span class="text-primary">Liste</span> <i class="bi bi-menu-app fs-5"></i> </h1>
+      </div>
+      <div class="pt-2">
+       <a href="{% url 'addmenu' %}"><button type="button" class="btn btn-primary btn-sm px-4"><i class="bi bi-plus-circle-fill"></i> Ajouter</button></a> 
+      </div>      
+</div>
+<div class="container pt-4">
+<div class="card border border-0 shadow-sm py-5">
+   <div class="card-body border border-0">
+      <table class="table">
+         <thead class="table table-bordered text-success">
+           <tr class="text-success text-center">
+             <th scope="col"  class="bg-success-subtle">#</th>
+             <th scope="col"  class="bg-success-subtle">Image du menu</th>
+             <th scope="col" class="bg-success-subtle">Nom du menu</th>
+             <th scope="col"  class="bg-success-subtle">Description</th>
+             <th scope="col"  class="bg-success-subtle">Action</th>
+           </tr>
+         </thead>
+         <tbody>
+          {% for m in menus  %}
+            <tr class="text-center">
+              <td>{{m.id}}</td>
+              {% if m.image %}  
+              <td >
+                  <img src="{{m.image.url}}" style="width:100px; height:100px">
+              </td>
+              {% endif %}
+              <td>{{m.title}}</td>
+              <td>{{m.description}}</td>
+              <td>
+                <a href="#" class="btn btn-warning btn-sm px-2 text-white"><i class="bi bi-box-arrow-in-up-right"></i>  Modifier</a>
+                <form action="#" method="post">
+                  {% csrf_token %}
+                  <button type="submit" onclick="return confirm('Are sure you want to delete this category ?')"
+                  class="btn btn-danger btn-sm px-4"> <i class="bi bi-trash3"></i>Delete</button>
+                </form>
+              </td>
+            </tr>
+           
+          {% endfor %}
+           
+           
+         </tbody>
+       </table>
+   </div>
+ </div>
+</div>
+</div>
+
+
+{% endblock %}

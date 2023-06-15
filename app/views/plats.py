@@ -4,6 +4,12 @@ from django.http import HttpRequest
 from app.models import Plat
 from app.forms import PlatForm
 
+def index(request):
+    assert isinstance(request, HttpRequest)
+    plats=Plat.objects.all()
+    return render(request, 
+                  'app/home/plats.html',
+                  {'plats':plats})
 def add(request):
     form=PlatForm
     return render(

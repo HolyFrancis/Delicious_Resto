@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import home, menu
+from app.views import home, menu, plats
 
 
 urlpatterns = [
@@ -25,7 +25,7 @@ urlpatterns = [
     path('utilisateur/',home.utilisateur, name='utilisateur'),
     path('menu/',menu.index, name='menu'),
     path('addmenu/',home.addmenu, name='addmenu'),
-    path('plats/',home.plats, name='plats'),
+    path('plats/',plats.index, name='plats'),
     path('addplat/',home.addplats, name='addplat'),
     path('commande/',home.commande, name='commande'),
     path('reservation/',home.reservation, name='reservation'),

@@ -1,0 +1,60 @@
+{% extends 'app/Layouts/default.html' %}
+{% load static %}
+
+ {% include 'app/partials/sidbar.html' %}
+ {% include 'app/partials/nav.html' %}
+ {% include 'app/partials/head.html' %}
+
+ {% block content %}
+<div class="content-wrapper">
+    <div class="container shadow-sm p-2 d-flex justify-content-between" style="background: #f7f7f7">
+        <div>
+           <h1 class="fw-bold py-1" style="font-size: 14px">AddMenu / <span class="text-primary">Form</span> <i class="bi bi-menu-app fs-5"></i> </h1>
+        </div>
+        <div class="pt-2">
+         {% comment %} <a href="{% url 'addmenu' %}"><button type="button" class="btn btn-primary btn-sm px-4"><i class="bi bi-plus-circle-fill"></i> Ajouter</button></a>  {% endcomment %}
+        </div>      
+  </div>
+
+  <div class="container pt-4">
+    <div class="card border border-0 shadow-sm py-1">
+       <div class="card-body border border-0">
+           <div style="width: 760px; margin: 0 auto">
+                <h4 class="fw-bold" style="font-size: 16px">Merci de remplir le formulaire.</h4>
+                <h4 class="fw-bold" style="font-size: 10px">Il est crucial de prendre le temps de remplir le formulaire.</h4>
+           </div>
+           <form action="{% url 'store_menu' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row">
+                  <div class="col-md-8 pt-3" style="width: 450px; margin: 0 auto">
+                      <div class="mb-3">
+                          <label for="exampleFormControlInput1" class="form-label" style="font-size: 12px">Entrer le nom du Menu</label>
+                          <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Entrer le nom du Menu"  style="font-size: 12px">
+                        </div>
+                      <div class="mb-3">
+                          <label for="exampleFormControlInput1" class="form-label" style="font-size: 12px">Entrer la Description</label>
+                          <textarea  name="description" class="form-control" placeholder="Entrer la Description"  style="font-size: 12px" id="exampleFormControlInput1" ></textarea>
+                        </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="card shadow-sm border-0 border-top">
+                          <div class="card-body">
+                              <div class='d-flex justify-content-center'>
+                                  <image src="https://placehold.jp/230x180.png" alt'image nouriture' class="pt-3"/>
+                              </div>
+                              <input type='file' name="image" class="pt-3"/>
+                          </div>
+                        </div>
+                  </div> 
+                  <div class="mb-3">
+                    <button type="submit" class="btn btn-primary btn-sm px-4" style='width: 100%'><i class="bi bi-plus-circle-fill"></i> Ajouter</button>
+                  </div>               
+              </div>
+            </form>
+       </div>
+     </div>
+    </div>
+</div>
+
+
+{% endblock %}

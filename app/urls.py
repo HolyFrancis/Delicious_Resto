@@ -23,7 +23,7 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path('', home.index, name="home"),
     path('utilisateur/',home.utilisateur, name='utilisateur'),
-    path('menu/',home.menu, name='menu'),
+    path('menu/',menu.index, name='menu'),
     path('addmenu/',home.addmenu, name='addmenu'),
     path('plats/',home.plats, name='plats'),
     path('addplat/',home.addplats, name='addplat'),
@@ -36,4 +36,5 @@ urlpatterns = [
     path('addboisson/',home.addboisson, name='addboisson'),
     path('stock/',home.stock, name='stock'),
     path('store/',menu.store,name='store_menu'),
+    path('editmenu/<int:id>',menu.edit, name='editmenu'),
 ]

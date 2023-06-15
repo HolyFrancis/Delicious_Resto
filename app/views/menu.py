@@ -4,6 +4,11 @@ from app.forms import MenuForm
 from django.http import HttpRequest
 from django.contrib import messages
 
+def index(request):
+
+    menus= Menu.objects.all()
+    return render(request, 'app/home/menus.html',{'menus':menus})
+
 def add(request):
     form=MenuForm
     return render(
@@ -31,8 +36,8 @@ def edit(request,id):
         if id== 0:
             form=MenuForm
         else:
-            menu=Menu.objects.get(pk=id)
-            form=MenuForm(instance=menu)
+            menus=Menu.objects.get(pk=id)
+            form=MenuForm(instance=menus)
         return render(
             request,
             'app/home/editmenu.html',{

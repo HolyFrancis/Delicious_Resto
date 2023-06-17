@@ -11,7 +11,7 @@ def index(request):
                   'app/home/plats.html',
                   {'plats':plats})
 def add(request):
-    form=PlatForm
+    form=PlatForm()
     return render(
         request,
         'app/home/addplat.html',{

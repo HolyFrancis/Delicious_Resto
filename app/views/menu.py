@@ -50,15 +50,15 @@ def update(request, id):
         if id == 0:
             form = MenuForm(request.POST)
         else:
-            menu = Menu.objects.get(pk=id)
-            form = MenuForm(request.POST, instance=menu)
+            menus = Menu.objects.get(pk=id)
+            form = MenuForm(request.POST, instance=menus)
         if form.is_valid():
             form.save()
             messages.success(request, "Menu has been updated successfully !")
         return redirect('/menu')
 
 def delete(request, id):
-    menu=Menu.objects.get(pk=id)
-    menu.delete()
+    menus=Menu.objects.get(pk=id)
+    menus.delete()
     messages.success(request, "Menu has been removed successfully!")
     return redirect('/menu')

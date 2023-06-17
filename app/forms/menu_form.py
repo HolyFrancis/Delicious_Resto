@@ -3,6 +3,6 @@ from app.models import Menu
 
 class MenuForm(ModelForm):
     
-    class Meta():
+    class Meta:
         model=Menu
         fields='__all__'
